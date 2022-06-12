@@ -1,0 +1,9 @@
+crawl-delay: 10
+
+User-agent: *
+Allow: /
+
+User-agent: *
+Disallow: /admin
+
+Sitemap: https://thelocalfeet.com/sitemap.xml
