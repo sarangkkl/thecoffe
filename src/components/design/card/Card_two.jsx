@@ -39,7 +39,7 @@ export default function Card_two({ i, link }) {
 
           <div className="content flex">
             {i.country && <p className="country">{i.country?.name}</p>}
-
+                
             <p className="title">{i?.title}</p>
 
             {/* {i.subtitle.length > 90 ? (

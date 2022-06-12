@@ -1,42 +1,36 @@
 import { Portabletext, urlFor, sanityClient } from "../../../../config/sanity";
 import FallbackLinks from "../../layout/helper/FallbackLinks";
-import { useState,useEffect } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { useState, useEffect } from "react";
+import { Navigation, Pagination, Scrollbar, A11y,EffectFade,Autoplay } from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 import ProductCard from "./ProductCard/ProductCard";
 const BlogContent = ({ blog, links, currPage }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if(blog.affiliateProducts){
-      console.log(loading)
+    if (blog.affiliateProducts) {
       setLoading(false);
     }
-  }, [])
-  
-  
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+  }, []);
 
-  
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 5000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
 
   const serializers = {
     types: {
@@ -71,7 +65,7 @@ const BlogContent = ({ blog, links, currPage }) => {
       },
     },
   };
- 
+
   return (
     <>
       <div className="main">
@@ -86,41 +80,90 @@ const BlogContent = ({ blog, links, currPage }) => {
           blocks={blog.body}
           serializers={serializers}
         />
-        
-        
+
         <p className="tag">the end</p>
-        {blog.affiliateProducts ? <div className="product_main_container">
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              showDots={false}
-              responsive={responsive}
-              ssr={true} // means to render carousel on server-side.
-              infinite={true}
-              autoPlay={true}
-              autoPlaySpeed={4000}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              
-              dotListClass="custom-dot-list-style"
-              itemClass="carousel-item-padding-40-px"
-            >
-              {blog.affiliateProducts && blog.affiliateProducts.map((item,index)=>(
-                <ProductCard key={index} item={item} />
-                ))}
-            </Carousel>
-            
-          </div>:""}
       </div>
+      {/* {blog.affiliateProducts ? (
+        <div
+          className="product_main_container"
+          style={{ boxSizing: "none", width: "150%" }}
+        >
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            spaceBetween={50}
+            slidesPerView={3}
+            navigation
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log('slide change')}
+          >
+            
+            
+          {blog.affiliateProducts.map((item, index) => (
+            <SwiperSlide>
+              <ProductCard key={index} item={item} />
+            </SwiperSlide>
+            
+          ))}
+           
+          </Swiper>
+
+        </div>
+      ) : (
+        ""
+      )} */}
+
+      <Swiper
+        modules={[Navigation,EffectFade,Autoplay]}
+        navigation
+        centeredSlides={true}
+        breakpoints={{
+          200:{
+            slidesPerView:1,
+            spaceBetween: 0,
+          },
+          400:{
+            slidesPerView:2,
+            spaceBetween: 0,
+          },
+          700:{
+            slidesPerView:3,
+            spaceBetween: 0,
+          },
+          900:{
+            slidesPerView:5,
+            spaceBetween: 0,
+          },
+
+        }}
+        effect
+        speed={800}
+        slidesPerView={5}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: true,
+        }}
+        loop
+        
+        className="mySwiper"
+      >
+
+          {blog.affiliateProducts.map((item, index) => (
+            <SwiperSlide>
+              <ProductCard key={index} item={item} />
+            </SwiperSlide>
+            
+          ))}
+        
+
+      </Swiper>
 
       <style jsx>{`
         .product_main_container {
           display: flex;
           // flex-wrap: wrap;
-          justify-content: space-between;
+          // justify-content: space-between;
         }
 
         .main {

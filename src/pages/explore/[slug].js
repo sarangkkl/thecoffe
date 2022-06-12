@@ -17,7 +17,8 @@ const eachBlogSlugQuery = `*[_type == "blog" && slug.current == $slug][0]
                           "slug":slug.current, 
                           subtitle, 
                           title,
-                          affiliateProducts, 
+                          affiliateProducts,
+                          category, 
                           metaTitle,
                           body, 
                           "comment":*[_type == "comments" && post._ref == ^._id && isApproved == false ]|order( publishedAt desc)

@@ -12,6 +12,7 @@ const eachBlogSlugQuery = `*[_type == "travelPosts" && slug.current == $slug][0]
                           "id":_id,
                           keywords,
                          'category':travelCategory->{name},
+                         'category'
                           mainImage, 
                           publishedAt, 
                           "slug":slug.current, 

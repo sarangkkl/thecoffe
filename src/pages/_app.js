@@ -4,6 +4,11 @@ import * as gtag from "../../config/gtag";
 import { useEffect } from "react";
 import { Detector } from "react-detect-offline";
 import NoInternet from "../components/design/template/NoInternet";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import "swiper/css/bundle";
 
 import "../styles/globals.css";
 

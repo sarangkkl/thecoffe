@@ -13,8 +13,8 @@ export default function SocialShareBox({ blog }) {
   // const currentUrl = router.pathname;
 
   // currentUrl = currentUrl.split("/");
-  
-  const shareUrl = `${process.env.NEXT_PUBLIC_WEBSITE_LINK}/explore/${blog.slug}`;
+  // console.log(blog)
+  const shareUrl = `${process.env.NEXT_PUBLIC_WEBSITE_LINK}/${blog.category}/${blog.slug}`;
 
   return (
     
