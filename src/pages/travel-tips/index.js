@@ -60,6 +60,7 @@ function travel({ seo, post }) {
         <>
           <Layout>
             <Landing />
+            {console.log("EVerything upto slug.js work")}
             <TravelTips tips={post} />
           </Layout>
         </>

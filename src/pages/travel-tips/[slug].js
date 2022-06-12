@@ -12,7 +12,8 @@ const eachBlogSlugQuery = `*[_type == "travelPosts" && slug.current == $slug][0]
                           "id":_id,
                           keywords,
                          'category':travelCategory->{name},
-                         'category'
+                          category,
+                          affiliateProducts,
                           mainImage, 
                           publishedAt, 
                           "slug":slug.current, 
@@ -115,6 +116,7 @@ function travelPostBySlug({ blog, otherBlogs }) {
       </Head>
 
       <CustomLayout links={links} currPage={blog.title}>
+        {console.log(blog)}
         <BlogTemplate
           blog={blog}
           others={otherBlogs}

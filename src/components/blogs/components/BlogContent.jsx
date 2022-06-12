@@ -68,53 +68,23 @@ const BlogContent = ({ blog, links, currPage }) => {
 
   return (
     <>
-      <div className="main">
-        {currPage && (
-          <div className="links_mob">
-            <FallbackLinks links={links} currPage={currPage} />
-          </div>
-        )}
+      <div>
+        <div className="main">
+          {currPage && (
+            <div className="links_mob">
+              <FallbackLinks links={links} currPage={currPage} />
+            </div>
+          )}
 
-        <Portabletext
-          className="blog_body"
-          blocks={blog.body}
-          serializers={serializers}
-        />
+          <Portabletext
+            className="blog_body"
+            blocks={blog.body}
+            serializers={serializers}
+          />
 
-        <p className="tag">the end</p>
-      </div>
-      {/* {blog.affiliateProducts ? (
-        <div
-          className="product_main_container"
-          style={{ boxSizing: "none", width: "150%" }}
-        >
-          <Swiper
-            modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={50}
-            slidesPerView={3}
-            navigation
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
-          >
-            
-            
-          {blog.affiliateProducts.map((item, index) => (
-            <SwiperSlide>
-              <ProductCard key={index} item={item} />
-            </SwiperSlide>
-            
-          ))}
-           
-          </Swiper>
-
+          <p className="tag">the end</p>
         </div>
-      ) : (
-        ""
-      )} */}
-
-      <Swiper
+        {blog.affiliateProducts ? <Swiper
         modules={[Navigation,EffectFade,Autoplay]}
         navigation
         centeredSlides={true}
@@ -157,7 +127,11 @@ const BlogContent = ({ blog, links, currPage }) => {
           ))}
         
 
-      </Swiper>
+      </Swiper>:""}
+
+      </div>
+      
+      
 
       <style jsx>{`
         .product_main_container {
