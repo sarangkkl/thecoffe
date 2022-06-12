@@ -10,11 +10,11 @@ import { EmailIcon, FacebookIcon, WhatsappIcon } from "react-share";
 
 export default function SocialShareBox({ blog }) {
   const router = useRouter()
-  const currentUrl = router.pathname;
+  // const currentUrl = router.pathname;
 
-  currentUrl = currentUrl.split("/");
-  console.log(currentUrl);
-  const shareUrl = `${process.env.NEXT_PUBLIC_WEBSITE_LINK}/${currentUrl[1]}/${blog.slug}`;
+  // currentUrl = currentUrl.split("/");
+  
+  const shareUrl = `${process.env.NEXT_PUBLIC_WEBSITE_LINK}/explore/${blog.slug}`;
 
   return (
     
